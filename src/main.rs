@@ -1,10 +1,10 @@
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
-use std::error::Error;
 
 fn main() {
-    let args: Vec<String> = env::args().collect(); 
+    let args: Vec<String> = env::args().collect();
 
     let config = Config::new(&args).unwrap_or_else(|err| {
         println!("Problem parsing arguements: {}", err);
@@ -41,7 +41,7 @@ impl Config {
 
         let query: String = args[1].clone();
         let filename: String = args[2].clone();
-        
+
         Ok(Config { query, filename })
     }
 }
