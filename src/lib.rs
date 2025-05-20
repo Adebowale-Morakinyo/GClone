@@ -6,8 +6,10 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     // Read the contents of the file specified by the user
     let contents = fs::read_to_string(config.filename)?;
 
-    // Output the file contents (will be replaced with actual search logic later)
-    println!("With text:\n{}", contents);
+    // Output lines found
+    for line in search(&config.query, &contents) {
+        println!("{}", line);
+    }
 
     Ok(())
 }
@@ -45,7 +47,6 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     results
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -60,5 +61,4 @@ Pick three.";
 
         assert_eq!(vec!["safe, fast, productive."], search(query, contents));
     }
-
 }
