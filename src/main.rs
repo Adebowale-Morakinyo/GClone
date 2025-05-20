@@ -9,7 +9,7 @@ fn main() {
 
     // Parse the arguments into a Config struct, or handle errors gracefully
     let config = Config::new(&args).unwrap_or_else(|err| {
-        println!("Problem parsing arguements: {}", err);
+        eprintln!("Problem parsing arguements: {}", err);
         process::exit(1)
     });
 
@@ -18,7 +18,7 @@ fn main() {
 
     // Run the core logic, handling any potential runtime errors
     if let Err(e) = minigrep::run(config) {
-        println!("Application Error: {}", e);
+        eprintln!("Application Error: {}", e);
         process::exit(1);
     };
 }
